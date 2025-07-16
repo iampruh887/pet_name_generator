@@ -1,5 +1,5 @@
 .venv/
-.env
+#.env
 __pycache__/
 .ropeproject/
 openai_api_key
