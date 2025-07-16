@@ -1,6 +1,6 @@
 .venv/
 .env
 __pycache__/
-.json
-.ropeproject
+.ropeproject/
 openai_api_key
+op.json
