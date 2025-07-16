@@ -3,7 +3,7 @@ import streamlit as st
 import json
 
 st.set_page_config(page_title="Pet Name Generator", layout="centered")
-st.title("🐾 Pets Deserve Cool Names Too!")
+st.title("🐾 Make your pet more interesting!")
 
 animal_type = st.sidebar.selectbox("What is your pet?", ("Cat", "Dog", "Cow", "Hen", "Hamster"))
 pet_color = st.sidebar.text_area(f"What color is your {animal_type}?", max_chars=15)
@@ -23,10 +23,13 @@ css_art = pet_data['css_art']
 animal = pet_data['animal_type']
 color = pet_data['pet_color']
 
+# Create a container for the card
+card_container = st.container()
+
 # --- Display the card with HTML & CSS ---
 html_code = f"""
 <style>
-.card {{
+.pet-card {{
     background-color: #f8f9fa;
     padding: 30px;
     border-radius: 20px;
@@ -35,33 +38,45 @@ html_code = f"""
     margin: 40px auto;
     font-family: 'Segoe UI', sans-serif;
     text-align: center;
-    position: relative;
 }}
-.card h2 {{
+
+.pet-card h2 {{
     margin: 10px 0;
     color: #333;
 }}
-.card p {{
+
+.pet-card p {{
     color: #555;
 }}
+
 .box-wrapper {{
-    position: relative;
-    height: 200px;
-    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 160px;
+    margin: 20px auto;
 }}
+
+.box {{
+    width: 160px;
+    height: 160px;
+    position: relative;
+}}
+
 {css_art}
 </style>
 
-<div class="card">
+<div class="pet-card">
     <h2>Meet <strong>{pet_name}</strong> 🐾</h2>
     <p><strong>Type:</strong> {animal}</p>
     <p><strong>Color:</strong> {color}</p>
     <p><strong>Superpower:</strong><br>{superpower}</p>
     <div class="box-wrapper">
         <div class="box"></div>
-        <div class="cat in-box"></div>
     </div>
 </div>
 """
 
-st.markdown(html_code, unsafe_allow_html=True)
+# Display the card in the container
+with card_container:
+    st.markdown(html_code, unsafe_allow_html=True)

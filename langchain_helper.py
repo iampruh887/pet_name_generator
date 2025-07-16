@@ -7,9 +7,29 @@ load_dotenv()
 
 
 
-# display_rules = "You are a Dog name suggesting agent. Be as creative as you can with how you are going to display the names on the command line interface. Dont just use markdown to display the names be inhumanely and insanely creative in the way you show the names, for example you can use (+_+) ASCII art. Also if you are going to use ASCII art, never use the same ASCII art for every name, also the ASCII art need not necessarily be a dog."
+display_rules = """
+Return the output as a valid JSON object with the following keys:
 
-display_rules = "Give the output in a json format 'animal_type': animal_type, 'pet_color':pet_color , 'superpower': a random unhinged superpower, 'pet_name': the actual pet name, 'css_art': css script for the art"
+- "animal_type": the type of animal (e.g., "Cat", "Hamster")
+- "pet_color": the pet's color (e.g., "yellow-green", "sky blue")
+- "superpower": a wildly overpowered but hilariously useless ability — it should be cute, absurd, and clearly impractical for humans or AI
+- "pet_name": a unique, creative, and fun name
+- "css_art": a pixel-style CSS artwork representing the pet
+
+Instructions for "css_art":
+- The artwork must use a fixed container element (e.g., <div class="box">...</div>)
+- The container should be exactly 160px × 160px and must contain various colours to simulate the response
+- All positioning and layout must be relative to the `.box` — avoid absolute positioning outside it
+- Each pixel should be uniquely colored (avoid leaving any white)
+- Make the layout loosely resemble the given animal
+- Escape all quotes in HTML and CSS properly using `\"`
+- Avoid unescaped newlines
+
+Important:
+- Only return the JSON object — no markdown formatting (e.g., no ```json)
+- The entire response must be valid JSON
+"""
+
 
 prompt= "I have a {animal_type} pet which is {pet_color} in colour and I want a cool name for it. Suggest me one cool name for my pet."
 
