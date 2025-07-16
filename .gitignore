@@ -3,4 +3,3 @@
 __pycache__/
 .ropeproject/
 openai_api_key
-op.json
